@@ -5,6 +5,7 @@ import static edu.wpi.first.units.Units.Fahrenheit;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.reduxrobotics.sensors.canandmag.Canandmag;
 import edu.wpi.first.math.MathUtil;
 import frc.robot.subsystems.algaeIntake.AlgaeIntakeConstants.AlgaePivotSetpoint;
 import frc.robot.subsystems.algaeIntake.AlgaeIntakeConstants.AlgaeWheelsSetpoint;
@@ -17,6 +18,8 @@ public class AlgaeIntakeIO_Real implements AlgaeIntakeIO {
   private TalonFX wheelsMotor;
   private VoltageOut wheelsSetpoint = new VoltageOut(0); // Volts
 
+  private Canandmag pivotEncoder;
+
   public AlgaeIntakeIO_Real() {
 
     // Motor Initialization
@@ -25,6 +28,9 @@ public class AlgaeIntakeIO_Real implements AlgaeIntakeIO {
 
     wheelsMotor = new TalonFX(AlgaeIntakeConstants.kWheelsMotorCANID);
     wheelsMotor.getConfigurator().apply(AlgaeIntakeConstants.kWheelsMotorConfig);
+
+    // Absolute encoder Initialization
+    pivotEncoder = new Canandmag(AlgaeIntakeConstants.kPivotEncoderCANID);
 
     // Optimize Pivot Motor Can Bus Utilization
     var pivotMotorVoltageSignal = pivotMotor.getMotorVoltage();
@@ -50,6 +56,7 @@ public class AlgaeIntakeIO_Real implements AlgaeIntakeIO {
 
     pivotMotor.optimizeBusUtilization();
     wheelsMotor.optimizeBusUtilization();
+    pivotMotor.setPosition(pivotEncoder.getAbsPosition());
   }
 
   @Override

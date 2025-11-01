@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.algaeIntake;
 
+import com.ctre.phoenix6.configs.ClosedLoopGeneralConfigs;
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.MotionMagicConfigs;
@@ -34,6 +35,7 @@ public class AlgaeIntakeConstants {
   // Motor Configuration Information
   public static final int kPivotMotorCANID = 14;
   public static final int kWheelsMotorCANID = 15;
+  public static final int kPivotEncoderCANID = 16;
 
   public static final TalonFXConfiguration kPivotMotorConfig =
       new TalonFXConfiguration()
@@ -42,12 +44,13 @@ public class AlgaeIntakeConstants {
                   .withInverted(InvertedValue.Clockwise_Positive)
                   .withNeutralMode(NeutralModeValue.Brake))
           .withFeedback(new FeedbackConfigs().withSensorToMechanismRatio(kPivotGearRatio))
+          .withClosedLoopGeneral(new ClosedLoopGeneralConfigs().withContinuousWrap(true))
           .withMotionMagic(
               new MotionMagicConfigs() // Example Values Only Needs Tuning
                   .withMotionMagicCruiseVelocity(360d / 360d) // 360 degrees per second
                   .withMotionMagicAcceleration(1080d / 360d) // 1080 degrees per second squared
               )
-          .withSlot0(new Slot0Configs().withKP(40)) // Example Values Only Needs Tuning
+          .withSlot0(new Slot0Configs().withKP(1)) // Example Values Only Needs Tuning
           .withCurrentLimits(
               new CurrentLimitsConfigs()
                   .withSupplyCurrentLimit(40)
