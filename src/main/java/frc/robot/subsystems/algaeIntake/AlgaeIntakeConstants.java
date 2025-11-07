@@ -33,9 +33,9 @@ public class AlgaeIntakeConstants {
   public static final double kWheelsGearRatio = (24d / 12);
 
   // Motor Configuration Information
-  public static final int kPivotMotorCANID = 14;
+  public static final int kPivotMotorCANID = 16;
   public static final int kWheelsMotorCANID = 15;
-  public static final int kPivotEncoderCANID = 16;
+  public static final int kPivotEncoderCANID = 30;
 
   public static final TalonFXConfiguration kPivotMotorConfig =
       new TalonFXConfiguration()
