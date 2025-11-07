@@ -35,7 +35,7 @@ deploy {
                     jvmArgs.add("-XX:MaxGCPauseMillis=50")
 
                     // The options below may improve performance, but should only be enabled on the RIO 2
-                    // *Southwick - uncommented the following 4 lines per instructions on 
+                    // *Southwick - uncommented the following 4 lines per instructions on
                     // https://docs.advantagekit.org/getting-started/template-projects/talonfx-swerve-template
                     //
                     final MAX_JAVA_HEAP_SIZE_MB = 100;

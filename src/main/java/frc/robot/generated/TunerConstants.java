@@ -84,16 +84,17 @@ public class TunerConstants {
   // This may need to be tuned to your individual robot
   private static final double kCoupleRatio = 3.8181818181818183;
 
-  //private static final double kDriveGearRatio = 7.363636363636365;
-  private static final double kDriveGearRatio = 50/14 * 16/28 * 45/15; // updated per swerve module docs L3
-  //private static final double kSteerGearRatio = 15.42857142857143;
-  private static final double kSteerGearRatio = 150 / 7; // set per swerve module docs
+  // private static final double kDriveGearRatio = 7.363636363636365;
+  private static final double kDriveGearRatio =
+      (50 / 14) * (16 / 28) * (45 / 15); // updated per swerve module docs L3
+  // private static final double kSteerGearRatio = 15.42857142857143;
+  private static final double kSteerGearRatio = 150 / 7; // [Southwick] set per swerve module docs
   private static final Distance kWheelRadius = Inches.of(2.167);
 
   private static final boolean kInvertLeftSide = false;
   private static final boolean kInvertRightSide = true;
 
-  private static final int kPigeonId = 0; //Set to match 2025 Scylla
+  private static final int kPigeonId = 0; // Set to match 2025 Scylla
 
   // These are only used for simulation
   private static final MomentOfInertia kSteerInertia = KilogramSquareMeters.of(0.004);
@@ -134,10 +135,9 @@ public class TunerConstants {
               .withSteerFrictionVoltage(kSteerFrictionVoltage)
               .withDriveFrictionVoltage(kDriveFrictionVoltage);
 
-  //[Southwick] - Got the following constants from Scylla
-  // Front Left  
-
-  // Module # 0
+  // [Southwick] - Got the following constants from Scylla
+  // | Front Left
+  // | Module # 0
   private static final int kFrontLeftSteerMotorId = 1;
   private static final int kFrontLeftDriveMotorId = 2;
   private static final int kFrontLeftEncoderId = 27;
@@ -147,8 +147,8 @@ public class TunerConstants {
   private static final Distance kFrontLeftXPos = Inches.of(11.75);
   private static final Distance kFrontLeftYPos = Inches.of(11.75);
 
-  // Front Right
-  // Module # 1
+  // | Front Right
+  // | Module # 1
   private static final int kFrontRightSteerMotorId = 3;
   private static final int kFrontRightDriveMotorId = 4;
   private static final int kFrontRightEncoderId = 26;
@@ -158,8 +158,8 @@ public class TunerConstants {
   private static final Distance kFrontRightXPos = Inches.of(11.75);
   private static final Distance kFrontRightYPos = Inches.of(-11.75);
 
-  // Back Right
-  // Module # 3
+  // | Back Right
+  // | Module # 3
   private static final int kBackRightSteerMotorId = 5;
   private static final int kBackRightDriveMotorId = 6;
   private static final int kBackRightEncoderId = 25;
@@ -169,8 +169,8 @@ public class TunerConstants {
   private static final Distance kBackRightXPos = Inches.of(-11.75);
   private static final Distance kBackRightYPos = Inches.of(-11.75);
 
-  // Back Left
-  // Module # 2
+  // | Back Left
+  // | Module # 2
   private static final int kBackLeftSteerMotorId = 7;
   private static final int kBackLeftDriveMotorId = 8;
   private static final int kBackLeftEncoderId = 24;
