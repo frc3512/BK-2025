@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.commands.DriveCommands;
 import frc.robot.generated.TunerConstants;
@@ -50,7 +50,7 @@ public class RobotContainer {
   private final AlgaeIntake algaeIntake;
 
   // Controller
-  private final CommandPS4Controller controller = new CommandPS4Controller(0);
+  private final CommandXboxController controller = new CommandXboxController(0);
 
   // Dashboard inputs
   private final LoggedDashboardChooser<Command> autoChooser;
@@ -135,7 +135,7 @@ public class RobotContainer {
 
     // Lock to 0° when A button is held
     controller
-        .triangle()
+        .a()
         .whileTrue(
             DriveCommands.joystickDriveAtAngle(
                 drive,
@@ -144,11 +144,11 @@ public class RobotContainer {
                 () -> new Rotation2d()));
 
     // Switch to X pattern when X button is pressed
-    controller.square().onTrue(Commands.runOnce(drive::stopWithX, drive));
+    controller.x().onTrue(Commands.runOnce(drive::stopWithX, drive));
 
     // Reset gyro to 0° when B button is pressed
     controller
-        .cross()
+        .b()
         .onTrue(
             Commands.runOnce(
                     () ->
@@ -158,7 +158,7 @@ public class RobotContainer {
                 .ignoringDisable(true));
 
     controller
-        .L2()
+        .leftTrigger()
         .onTrue(
             Commands.sequence(
                 algaeIntake.changePivotSetpoint(AlgaePivotSetpoint.kIntake),
@@ -168,7 +168,7 @@ public class RobotContainer {
                 algaeIntake.changePivotSetpoint(AlgaePivotSetpoint.kHome),
                 algaeIntake.changeWheelsSetpoint(AlgaeWheelsSetpoint.KIdle)));
     controller
-        .R2()
+        .rightTrigger()
         .onTrue(algaeIntake.changeWheelsSetpoint(AlgaeWheelsSetpoint.kProcessor))
         .onFalse(algaeIntake.changeWheelsSetpoint(AlgaeWheelsSetpoint.kOff));
   }
