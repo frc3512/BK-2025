@@ -36,6 +36,10 @@ import frc.robot.subsystems.drive.GyroIOPigeon2;
 import frc.robot.subsystems.drive.ModuleIO;
 import frc.robot.subsystems.drive.ModuleIOSim;
 import frc.robot.subsystems.drive.ModuleIOTalonFX;
+import frc.robot.subsystems.elevator.Elevator;
+import frc.robot.subsystems.elevator.ElevatorIO;
+import frc.robot.subsystems.elevator.ElevatorIO_Real;
+import frc.robot.subsystems.elevator.ElevatorIO_Sim;
 import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /**
@@ -48,6 +52,7 @@ public class RobotContainer {
   // Subsystems
   private final Drive drive;
   private final AlgaeIntake algaeIntake;
+  private final Elevator elevator;
 
   // Controller
   private final CommandXboxController controller = new CommandXboxController(0);
@@ -68,6 +73,7 @@ public class RobotContainer {
                 new ModuleIOTalonFX(TunerConstants.BackLeft),
                 new ModuleIOTalonFX(TunerConstants.BackRight));
         algaeIntake = new AlgaeIntake(new AlgaeIntakeIO_Real());
+        elevator = new Elevator(new ElevatorIO_Real());
         break;
 
       case SIM:
@@ -80,6 +86,7 @@ public class RobotContainer {
                 new ModuleIOSim(TunerConstants.BackLeft),
                 new ModuleIOSim(TunerConstants.BackRight));
         algaeIntake = new AlgaeIntake(new AlgaeIntakeIO_Sim());
+        elevator = new Elevator(new ElevatorIO_Sim());
         break;
 
       default:
@@ -92,6 +99,7 @@ public class RobotContainer {
                 new ModuleIO() {},
                 new ModuleIO() {});
         algaeIntake = new AlgaeIntake(new AlgaeIntakeIO() {});
+        elevator = new Elevator(new ElevatorIO() {});
         break;
     }
 
