@@ -56,11 +56,7 @@ public class AlgaeIntakeIO_Real implements AlgaeIntakeIO {
 
     pivotMotor.optimizeBusUtilization();
     wheelsMotor.optimizeBusUtilization();
-    pivotMotor.setPosition(getAbsEncoderDeg() / 360);
-  }
-
-  public final double getAbsEncoderDeg() {
-    return ((360.0 * pivotEncoder.getAbsPosition() + 180) % 360.0) - 180.0;
+    pivotMotor.setPosition(pivotEncoder.getAbsPosition());
   }
 
   @Override

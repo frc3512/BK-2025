@@ -24,8 +24,8 @@ public class AlgaeIntakeConstants {
   public static final DCMotor kPivotMotor = DCMotor.getKrakenX60(1);
   public static final double kPivotGearRatio = (68d / 30) * (3d / 1);
 
-  public static final double kPivotMinAngle = 0.0;
-  public static final double kPivotMaxAngle = 90.0;
+  public static final double kPivotMinAngle = 0;
+  public static final double kPivotMaxAngle = 137;
   public static final double kPivotAngleTolerance = 2.0;
 
   // wheels motor
@@ -41,19 +41,16 @@ public class AlgaeIntakeConstants {
       new TalonFXConfiguration()
           .withMotorOutput(
               new MotorOutputConfigs()
-                  .withInverted(InvertedValue.Clockwise_Positive)
+                  .withInverted(InvertedValue.CounterClockwise_Positive)
                   .withNeutralMode(NeutralModeValue.Brake))
           .withFeedback(new FeedbackConfigs().withSensorToMechanismRatio(kPivotGearRatio))
           .withClosedLoopGeneral(new ClosedLoopGeneralConfigs().withContinuousWrap(true))
           .withMotionMagic(
               new MotionMagicConfigs() // Example Values Only Needs Tuning
-                  .withMotionMagicCruiseVelocity(0) // 360 degrees per second
-                  .withMotionMagicAcceleration(0) // 1080 degrees per second square
+                  .withMotionMagicCruiseVelocity(14.705) // 360 degrees per second
+                  .withMotionMagicAcceleration(10) // 1080 degrees per second square
               )
-          .withSlot0(new Slot0Configs()
-          .withKP(0)
-          .withKG(0)
-          .withKD(0)) // Example Values Only Needs Tuning
+          .withSlot0(new Slot0Configs().withKP(16).withKD(.5)) // Example Values Only Needs Tuning
           .withCurrentLimits(
               new CurrentLimitsConfigs()
                   .withSupplyCurrentLimit(40)
@@ -69,16 +66,16 @@ public class AlgaeIntakeConstants {
                   .withNeutralMode(NeutralModeValue.Brake))
           .withCurrentLimits(
               new CurrentLimitsConfigs()
-                  .withSupplyCurrentLimit(20)
-                  .withStatorCurrentLimit(30)
+                  .withSupplyCurrentLimit(30)
+                  .withStatorCurrentLimit(40)
                   .withSupplyCurrentLimitEnable(true)
                   .withStatorCurrentLimitEnable(true));
 
   // Setpoints
 
   public static enum AlgaePivotSetpoint {
-    kHome(0.0),
-    kIntake(45.0);
+    kHome(5.5),
+    kIntake(52.5);
 
     public final double degrees;
 
@@ -89,8 +86,8 @@ public class AlgaeIntakeConstants {
 
   public static enum AlgaeWheelsSetpoint {
     kOff(0),
-    kIntake(9),
-    KIdle(2),
+    kIntake(12),
+    KIdle(5),
     kProcessor(-5);
 
     public final double volts;
