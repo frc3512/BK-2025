@@ -47,10 +47,13 @@ public class AlgaeIntakeConstants {
           .withClosedLoopGeneral(new ClosedLoopGeneralConfigs().withContinuousWrap(true))
           .withMotionMagic(
               new MotionMagicConfigs() // Example Values Only Needs Tuning
-                  .withMotionMagicCruiseVelocity(360d / 360d) // 360 degrees per second
-                  .withMotionMagicAcceleration(1080d / 360d) // 1080 degrees per second squared
+                  .withMotionMagicCruiseVelocity(0) // 360 degrees per second
+                  .withMotionMagicAcceleration(0) // 1080 degrees per second square
               )
-          .withSlot0(new Slot0Configs().withKP(1)) // Example Values Only Needs Tuning
+          .withSlot0(new Slot0Configs()
+          .withKP(0)
+          .withKG(0)
+          .withKD(0)) // Example Values Only Needs Tuning
           .withCurrentLimits(
               new CurrentLimitsConfigs()
                   .withSupplyCurrentLimit(40)
